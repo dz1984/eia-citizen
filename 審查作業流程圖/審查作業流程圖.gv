@@ -1,0 +1,63 @@
+﻿digraph g {
+  node [shape = rect, fontname="PMingLiu"];
+  edge [fontname="PMingLiu" ];
+  graph [fontname="PMingLiu", label = "審查作業流程圖", labelloc = "t"];
+
+  a [label = "辦理說明會及處理民於意見"]; 
+  b [label = "提出環境影響說明書" ];
+  c [label = "轉送環境影響說明書至環保機關"];
+  d [label = "環保主管機關審查委員會"];
+  e [label = "有重大影響之虞\n進入第二階段環境影響評估",shape = none];
+  f [label = "說明書分送有關機關\n舉行公開說明會"];
+  g [label = "辦理評估範疇界定"];
+  h [label = "撰寫環境影響評估報告書初稿"];
+  i [label = "辦理現勘及公聽會"];
+  j [label = "轉送環境影響評估報告書初稿至環保機關"];
+  k [label = "環保主管機關審查委員會"];
+  l [label = "舉行公開說明會"];
+  m [label = "審查結論公告並刊登公報"];
+  n [label = "得另提替代方案"];
+  o [label = "審查結論公告"];
+
+  a,b,f,h,l,n [style = filled, fillcolor = yellow];
+  c,i,j [style = filled, fillcolor = green];
+  d,g,k,m,o [shape= oval, peripheries=2, style = filled, fillcolor = aquamarine];
+
+
+  rankdir = LR;
+
+  subgraph cluster_1{
+    label = "";
+    style = invis;
+    a -> b -> c -> d -> e -> f -> g -> h -> i ->j -> k [constraint=false];
+  }
+
+  subgraph cluster_2 {
+    label = "";
+    l;
+    o;
+  }
+
+  d -> l [ label = "通過" ];
+  d -> n [ label = "不通過", fontcolor = red, constraint=false];
+  k -> m [ label = "通過"];
+  k -> n [ label = "不通過", fontcolor = red, constraint=false];
+  n->b;
+
+  Legend [shape=none, margin=0, label=<
+      <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4" >
+        <TR>
+          <TD BGCOLOR="GREEN"></TD>
+          <TD>目的事業主管機關</TD>
+        </TR>
+        <TR>
+          <TD BGCOLOR="Aquamarine"></TD>
+          <TD>環保主管機關</TD>
+       </TR>
+       <TR>
+        <TD BGCOLOR="YELLOW"></TD>
+        <TD>開發單位</TD>
+       </TR>
+      </TABLE>
+     >];
+}
