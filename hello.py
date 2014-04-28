@@ -1,7 +1,15 @@
-from bottle import route, run
+from bottle import route, template, jinja2_view
 
 @route('/hello')
-def hello():
-    return "Hello World!"
+@route('/hello/<name>')
+def hello(name='world'):
+	return template('<b>Hello {{name}}</b>!', name=name)
 
-run(host='localhost', port=8080, debug=True)
+@route('/')
+def home():
+	return 'Home'
+
+@route('/templates/base')
+@jinja2_view('base.html')
+def templates_base():
+	return {}
