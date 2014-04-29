@@ -1,0 +1,76 @@
+body {
+	margin: 0;
+	background: #eee;
+}
+
+#admin_page {
+	width: 1000px;
+	border: 1px solid #aaa;
+	margin: 0 auto;
+	font-size: 11pt;
+}
+
+/* #navibar start */
+
+#navibar {
+	color: #fff;
+	background: linear-gradient(#000,#07a);
+	height: 25px;
+}
+
+#navibar > h1 {
+	float: left;
+	height: 18px;
+	color: #333;
+	background: #ffe;
+	font-size: 10pt;
+	line-height: 18px;
+	padding: 0px 10px;
+	margin-top: 2px;
+	margin-left: 20px;
+	border: 1px solid #000;
+	border-radius: 10px;
+	box-shadow: 0px 0px 10px #fff;
+}
+
+#menu, #account  {
+	line-height: 21px;
+	height: 23px;
+	border: 1px solid transparent;
+}
+
+#menu {
+	float: left;
+	margin-left: 20px;
+}
+
+#account {
+	float: right;
+	margin-right: 20px;
+}
+
+#menu > div, #account > div { float: left; }
+#menu > div { margin-right: 20px; }
+#account > div { margin-left: 20px; }
+
+/* #navibar end */
+
+/* #footer start */
+
+#footer {
+	background: #ddd;
+	border: 1px solid transparent;
+	border-top-color: #aaa;
+}
+
+#footer p {
+	margin: 10px 20px;
+	text-align: right;
+}
+
+/* #footer end */
+
+#panel {
+	background: #fff;
+	min-height: 575px;
+}

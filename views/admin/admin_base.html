@@ -7,16 +7,23 @@
 {% block body %}
 <div id="admin_page">
 	<div id="navibar">
+		<h1>環評公民版 - 管理工具</h1>
 		<div id="menu">
-
+			<div>選單 1</div>
+			<div>選單 2</div>
+			<div>選單 3</div>
 		</div>
 		<div id="account">
-			管理員: 小璋丸
-			登出
+			<div>管理員: 小璋丸</div>
+			<div>登出</div>
 		</div>
+		<div class="clear"></div>
 	</div>
 	<div id="panel">
 		{% block panel %}{% endblock %}
+	</div>
+	<div id="footer">
+		<p>有問題請反應到 <a href="https://github.com/g0v/eia-citizen/issues?state=open">g0v/eia-citizen</a> 專案</p>
 	</div>
 </div>
 {% endblock %}
