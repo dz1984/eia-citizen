@@ -3,13 +3,12 @@
 
 <head>
 <meta http-equiv="Content" content="text/html; charset=utf-8" />
-<title>Home - 環評 OO 網</title>
-<script type="text/javascript" src="scripts/zepto-1.1.js"></script>
-<link rel="stylesheet" type="text/css" href="css/reset.css" />
+<title>{% block title %}{% endblock %} - 環境影響評估公民版</title>
+<script type="text/javascript" src="/js/zepto-1.1.3.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/css/reset.css" />
+{% block head %}{% endblock %}
 </head>
 
-<body>
-這是 base.html
-</body>
+<body>{% block body %}{% endblock %}</body>
 
 </html>

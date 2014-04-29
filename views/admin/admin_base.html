@@ -1,1 +1,22 @@
 {% extends "layout/base.html" %}
+
+{% block head %}
+<link rel="stylesheet" type="text/css" href="/css/admin.css" />
+{% endblock %}
+
+{% block body %}
+<div id="admin_page">
+	<div id="navibar">
+		<div id="menu">
+
+		</div>
+		<div id="account">
+			管理員: 小璋丸
+			登出
+		</div>
+	</div>
+	<div id="panel">
+		{% block panel %}{% endblock %}
+	</div>
+</div>
+{% endblock %}
