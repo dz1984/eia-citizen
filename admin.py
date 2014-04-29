@@ -14,3 +14,8 @@ from bottle import TEMPLATE_PATH
 @view('admin/info.html')
 def admin_info():
 	return {'name': 'admin_info()'}
+
+@route('/admin/doc/detail')
+@view('admin/doc_detail.html')
+def admin_doc_detail():
+	return {}

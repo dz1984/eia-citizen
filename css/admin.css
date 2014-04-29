@@ -7,7 +7,7 @@ body {
 	width: 1000px;
 	border: 1px solid #aaa;
 	margin: 0 auto;
-	font-size: 11pt;
+	font-size: 10pt;
 }
 
 /* #navibar start */
@@ -72,5 +72,5 @@ body {
 
 #panel {
 	background: #fff;
-	min-height: 575px;
+	min-height: 500px;
 }
