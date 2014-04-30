@@ -5,11 +5,14 @@
 #
 
 RELEASE = False
+ADMIN = True
 
 # 載入所有的 request 處理程式
-import admin
 import hello
 import static
+
+if WITH_ADMIN:
+	import admin
 
 # 啟動服務
 from bottle import route, run
