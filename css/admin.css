@@ -70,7 +70,44 @@ body {
 
 /* #footer end */
 
+/* #panel start */
+
 #panel {
 	background: #fff;
 	min-height: 500px;
+	border: 1px solid transparent;
 }
+
+#panel > #function_stack { margin: 15px 20px 15px 20px; }
+#panel > div, #panel h1, #panel hr { margin: 0px 20px 10px 20px; }
+#panel > h1 { font-size: 13pt; }
+
+/* CSS for form */
+/* #panel > div > form { border: 1px solid red; } */
+#panel > div > form > h4,
+#panel > div > form > div:not([class]) {
+	float: left;
+	/* border: solid 1px red; */
+	font-size: 10pt;
+	line-height: 26px;
+	margin-top: 2px;
+}
+
+#panel > div > form > h4 {
+	clear: both;
+	width: 100px;
+	text-align: right;
+	padding-right: 15px;
+	margin-right: 5px;
+	background: #90a0ff;
+}
+
+#panel > div > form > div.buttons {
+	clear: both;
+	margin-top: 25px;
+	margin-left: 120px;
+}
+
+#panel > div > form > div.buttons > input { margin-right: 10px; }
+
+/* #panel end */

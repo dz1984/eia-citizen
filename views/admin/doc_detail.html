@@ -1,42 +1,45 @@
 {% extends "admin/admin_base.html" %}
-
 {% block title %}書件細節{% endblock %}
 
 {% block panel %}
-<h1>書件細節</h1>
+<div id="function_stack">
+	管理工具 &gt; 環評書件 &gt; 詳細內容
+</div>
+
+<h1>書件詳細內容</h1>
 <hr/>
 
-<p>案號：<input type="text" name="" values="" /></p>
-<p>開發單位：<input type="text" name="" values="" /></p>
-<p>目的：<input type="text" name="" values="" /></p>
-<p>約略位置：
-	(<input type="text" name="" values="" />,
-	<input type="text" name="" values="" />)
-</p>
-<p>影響：
-	空氣
-	噪音
-	振動
-	水質
-	交通
-	生態
-	土壤
-</p>
-
-
-<p>環評機關：<input type="text" name="" values="" /></p>
-<p>名稱：<input type="text" name="" values="" /></p>
-<p>類別：<input type="text" name="" values="" /></p>
-<p>承辦人：<input type="text" name="" values="" /></p>
-<p>審查進度：<input type="text" name="" values="" /></p>
-<p>說明：<input type="text" name="" values="" /></p>
-<p>全文圖檔：</p>
-<p>頁數：</p>
-
-<p>監測報告：</p>
-<p>監測單位：</p>
-<p>關係廠商</p>
-<p>上游廠商：</p>
-<p>下游廠商：</p>
-
+<div>
+	<form id="detail" name="detail" method="POST">
+		<!-- 輸入區 -->
+		<h4>文號</h4>
+		<div><input type="text" name="" values="" /></div>
+		<h4>開發單位</h4>
+		<div><input type="text" name="" values="" /></div>
+		<h4>座標</h4>
+		<div>
+			<input type="text" name="" values="" />，
+			<input type="text" name="" values="" />
+		</div>
+		<h4>影響</h4>
+		<div>
+			<input name="impact" type="checkbox" value="air" /> 空氣
+			<input name="impact" type="checkbox" value="noise" /> 噪音
+			<input name="impact" type="checkbox" value="quake" /> 振動
+			<input name="impact" type="checkbox" value="water" /> 水質
+			<input name="impact" type="checkbox" value="traffic" /> 交通
+			<input name="impact" type="checkbox" value="???" /> 生態
+			<input name="impact" type="checkbox" value="ground" /> 土壤
+		</div>
+		<h4>檔案</h4>
+		<div><input type="text" name="" values="" /></div>
+		<div class="clear"></div>
+		<!-- 動作按鈕 -->
+		<div class="buttons">
+			<input type="button" value="更新" />
+			<input type="submit" value="取消" />
+		</div>
+		<div class="clear"></div>
+	</form>
+</div>
 {% endblock %}
