@@ -110,4 +110,16 @@ body {
 
 #panel > div > form > div.buttons > input { margin-right: 10px; }
 
+#panel > div > form input[type=text] {
+	border: 1px solid #777;
+	width: 150px;
+}
+
+/* All available sizes of input[type=text], XS ~ XL */
+#panel > div > form input[type=text].XS { width:50px;  }
+#panel > div > form input[type=text].S  { width:100px; }
+#panel > div > form input[type=text].M  { width:150px; } /* default size */
+#panel > div > form input[type=text].L  { width:300px; }
+#panel > div > form input[type=text].XL { width:500px; }
+
 /* #panel end */

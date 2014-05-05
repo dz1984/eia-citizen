@@ -13,13 +13,13 @@
 	<form id="detail" name="detail" method="POST">
 		<!-- 輸入區 -->
 		<h4>文號</h4>
-		<div><input type="text" name="" values="" /></div>
+		<div><input type="text" name="" value="{{id}}" disabled="disabled" /></div>
 		<h4>開發單位</h4>
-		<div><input type="text" name="" values="" /></div>
+		<div><input type="text" name="" value="{{developer}}" class="L" /></div>
 		<h4>座標</h4>
 		<div>
-			<input type="text" name="" values="" />，
-			<input type="text" name="" values="" />
+			<input type="text" name="" value="{{lat}}" class="S" />，
+			<input type="text" name="" value="{{lng}}" class="S" />
 		</div>
 		<h4>影響</h4>
 		<div>
@@ -32,7 +32,7 @@
 			<input name="impact" type="checkbox" value="ground" /> 土壤
 		</div>
 		<h4>檔案</h4>
-		<div><input type="text" name="" values="" /></div>
+		<div><input type="text" name="" value="{{file}}" disabled="disabled" /></div>
 		<div class="clear"></div>
 		<!-- 動作按鈕 -->
 		<div class="buttons">
