@@ -9,6 +9,16 @@ CREATE TABLE docs (
 	PRIMARY KEY (id)
 );
 
+-- 公司資料庫 (僅限 '核准設立')
+-- 資料由 gen_corps.py 產生
+-- TODO: 最好再加個資本額有利排序
+CREATE TABLE corps (
+	id CHAR(8),
+	name VARCHAR(50),
+	PRIMARY KEY (id)
+);
+CREATE INDEX corps_idx_01 ON corps.name;
+
 -- 測試資料，嶺東科技大學
 INSERT INTO docs(id,file) VALUES('1030393A','1030393A.pdf');
 
