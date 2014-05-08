@@ -14,7 +14,11 @@
 * /data  - 流程圖、文件、資料庫
 
 #### 執行方式 ####
-* 先製作一份 virtualenv
-* 在 virtualenv 目錄下執行 git clone
-* 進入 eia-citizen 目錄
-* 執行 ./main.py
+```sh
+virtualenv pyenv # 先製作一份 virrualenv，確保 Python 環境衛生
+cd pyenv
+bin/pip install jinja2
+git clone git@github.com:g0v/eia-citizen.git
+cd eia-citizen
+./main.py
+```
