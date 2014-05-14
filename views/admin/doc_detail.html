@@ -5,23 +5,19 @@
 {% block head %}
 {{ super() }}
 <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?sensor=false"></script>
+<script type="text/javascript" src="/js/geocoding.js"></script>
 <script type="text/javascript">
-var map;
-
 $(document).ready(function() {
-	var mapOptions = {
-		center: new google.maps.LatLng({{lat}}, {{lng}}),
-		zoom: 16,
-		mapTypeId: google.maps.MapTypeId.ROADMAP
-	};
-	map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
-	google.maps.event.addListener(map, "center_changed", updatePosition);
+	$("#position_tool").geocoding({
+		lat: {{lat}},
+		lng: {{lng}},
+		lat_field: "input[name=lat]",
+		lng_field: "input[name=lng]"
+	});
 });
 
-function updatePosition() {
-	var pos = map.getCenter();
-	$("input[name=lat]").val(pos.lat().toFixed(5));
-	$("input[name=lng]").val(pos.lng().toFixed(5));
+function setPosition() {
+	$("#position_tool").geocoding("open", "input[name=pos]");
 }
 </script>
 {% endblock %}
@@ -45,17 +41,17 @@ function updatePosition() {
 		<div style="border: 1px solid #777; border-radius: 8px;">
 			<input type="text" name="lat" value="{{lat}}" class="S" style="text-align:right; border:0px;" />,
 			<input type="text" name="lng" value="{{lng}}" class="S" style="border:0px;" />
-			<input type="button" value="標記地點" />
+			<input type="button" name="pos" value="標記地點" onclick="setPosition()" />
 		</div>
 		<h4>影響</h4>
 		<div>
-			<input name="impact" type="checkbox" value="air" /> 空氣
-			<input name="impact" type="checkbox" value="noise" /> 噪音
-			<input name="impact" type="checkbox" value="quake" /> 振動
-			<input name="impact" type="checkbox" value="water" /> 水質
-			<input name="impact" type="checkbox" value="traffic" /> 交通
-			<input name="impact" type="checkbox" value="???" /> 生態
-			<input name="impact" type="checkbox" value="ground" /> 土壤
+			<input name="impact" type="checkbox" value="A" /> <span title="空氣 - 代碼: A">空氣</span>
+			<input name="impact" type="checkbox" value="N" /> <span title="空氣 - 代碼: N">噪音</span>
+			<input name="impact" type="checkbox" value="Q" /> <span title="空氣 - 代碼: Q">振動</span>
+			<input name="impact" type="checkbox" value="S" /> <span title="空氣 - 代碼: S">土壤</span>
+			<input name="impact" type="checkbox" value="T" /> <span title="空氣 - 代碼: T">交通</span>
+			<input name="impact" type="checkbox" value="W" /> <span title="空氣 - 代碼: W">水質</span>
+			<input name="impact" type="checkbox" value="Z" /> <span title="空氣 - 代碼: Z">生態</span>
 		</div>
 		<h4>檔案</h4>
 		<div><input type="text" name="" value="{{file}}" disabled="disabled" /></div>
@@ -69,5 +65,7 @@ function updatePosition() {
 	</form>
 </div>
 
-<div id="map_canvas" style="width:400px;height:300px;"></div>
+<!-- 使用 mask 遮蔽，置中顯示 -->
+<div id="position_tool"></div>
+
 {% endblock %}
