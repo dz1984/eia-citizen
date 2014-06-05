@@ -7,8 +7,8 @@ from bottle import route, static_file
 
 @route('/css/<filename>')
 def css(filename):
-    return static_file(filename, root='./css')
+    return static_file(filename, root='./views/css')
 
 @route('/js/<filename>')
 def js(filename):
-    return static_file(filename, root='./js')
+    return static_file(filename, root='./views/js')

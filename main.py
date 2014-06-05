@@ -7,16 +7,19 @@
 RELEASE = False
 WITH_ADMIN = True
 
+
+import os,sys
+
+sys.path.insert(0,os.path.join(os.path.dirname(os.path.abspath(__file__)),'libs'))
+
 # 載入所有的 request 處理程式
-import home
-import static
-import api
+import routes
 
 if WITH_ADMIN:
     import admin
 
 # 啟動服務
-from bottle import route, run
+from bottle import run
 
 if RELEASE:
     # 上線環境啟動方式
