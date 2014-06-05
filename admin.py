@@ -14,12 +14,12 @@ from db import cur
 @route('/admin/info')
 @view('admin/info.html')
 def admin_info():
-	return {'name': 'admin_info()'}
+    return {'name': 'admin_info()'}
 
 @route('/admin/doc/detail')
 @view('admin/doc_detail.html')
 def admin_doc_detail():
-	docId = '1030393A'
-	cur.execute('SELECT * FROM docs WHERE id=?',(docId,))
-	row = cur.fetchone()
-	return row
+    docId = '1030393A'
+    cur.execute('SELECT * FROM docs WHERE id=?',(docId,))
+    row = cur.fetchone()
+    return row
