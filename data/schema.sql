@@ -6,34 +6,39 @@ CREATE TABLE docs (
     lng         DOUBLE NOT NULL DEFAULT 121.562,                    -- 經度
     impact      TEXT NOT NULL DEFAULT '[]',                         -- 影響
     file        VARCHAR(100) NOT NULL DEFAULT '',                   -- 檔案
-    doctype     VARCHAR(50) NOT NULL DEFAULT '',                    -- 書件類別      
-    taker       VARCHAR(50) NOT NULL DEFAULT '',                    -- 承辨人
-    region      VARCHAR(50) NOT NULL DEFAULT '',                    -- 基地行政發
-        -- 初審會日期
-        -- 目的事業主管機關
-        -- 開發計畫類別
-        -- 備註
-        -- 繳費日期
-        -- 審查結論別
-        -- 開發單位名稱
-        -- 備註
-        -- 繳費日期
-        -- 審查結論別
-        -- 開發單位名稱
-        -- 委員會日期
-        -- 開發規模
-        -- 處理情形
-        -- 基地面積
+    PRIMARY KEY (id)
+);
 
+-- 環評書件一覽
+CREATE TABLE lists (
+    id          VARCHAR(20),                -- 案號
+    agency      VARCHAR(100),               -- 環評機關
+    name        VARCHAR(100),               -- 名稱
+    doctype     VARCHAR(80),                -- 類別
+    taker       VARCHAR(30),                -- 承辦人
+    status      VARCHAR(50),                -- 審查進度
+    notes       VARCHAR(150)                -- 說明
+    PRIMARY KEY (id)
+);
 
-
-
-
-
-HCODE,DOCTYP,TAKER,DST,TRIA,DIRORG,DECAL,DSUNT,NOTES,SEDAT,EXTP,DEPN,COMIT,DSIZE,PORCS,DAREA
-
-案號,書件類別,承辨人 ,基地行政區,初審會日期,目的事業主管機關,開發計畫類別,,備註,繳費日期,審查結論別,開發單位名稱,委員會日期,開發規模,處理情形,基地面積
-
+-- 環評書件明細
+CREATE TABLE details (
+    id              VARCHAR(20),            -- 案號
+    doctype         VARCHAR(80),            -- 書件類別
+    devunit         VARCHAR(80),            -- 開發單位名稱
+    region          VARCHAR(50),            -- 基地行政區
+    devcategory     VARCHAR(50),            -- 開發計畫類別
+    area            DOUBLE,                 -- 基地面積
+    size            DOUBLE,                 -- 開發規模
+    unit            VARCHAR(30),            -- 開發規模單位
+    taker           VARCHAR(30),            -- 承辨人
+    agency          VARCHAR(100),           -- 目的事業主管機關
+    senddate        VARCHAR(10),            -- 繳費日期
+    status          VARCHAR(50),            -- 處理情形
+    examinedate     VARCHAR(10),            -- 初審會日期
+    examinestatus   VARCHAR(30),            -- 審查結論別
+    committeedate   VARCHAR(10),            -- 委員會日期
+    notes           VARCHAR(150)            -- 備註
     PRIMARY KEY (id)
 );
 
