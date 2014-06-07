@@ -17,7 +17,7 @@ CREATE TABLE lists (
     doctype     VARCHAR(80),                -- 類別
     taker       VARCHAR(30),                -- 承辦人
     status      VARCHAR(50),                -- 審查進度
-    notes       VARCHAR(150)                -- 說明
+    notes       VARCHAR(150),               -- 說明
     PRIMARY KEY (id)
 );
 
@@ -38,7 +38,7 @@ CREATE TABLE details (
     examinedate     VARCHAR(10),            -- 初審會日期
     examinestatus   VARCHAR(30),            -- 審查結論別
     committeedate   VARCHAR(10),            -- 委員會日期
-    notes           VARCHAR(150)            -- 備註
+    notes           VARCHAR(150),            -- 備註
     PRIMARY KEY (id)
 );
 
