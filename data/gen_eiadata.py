@@ -16,6 +16,8 @@ if __name__ == '__main__':
             conn.commit()
 
     details_fields = ['Id', 'DocType', 'DevUnit', 'Region', 'DevCategory','Area','Size', 'Unit', 'Taker', 'Agency', 'SendDate','Status','ExamineDate', 'ExamineStatus', 'CommitteeDate', 'Notes']
+
+    # import details dataset
     with open("%s/%s" % (CSV_FOLDER,'details.csv')) as f:
         reader = csv.DictReader(f)
 

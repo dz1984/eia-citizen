@@ -50,10 +50,12 @@ CREATE TABLE corps (
     name VARCHAR(50),
     PRIMARY KEY (id)
 );
-CREATE INDEX corps_idx_01 ON corps.name;
+CREATE INDEX corps_idx_01 ON corps (name);
 
 -- 測試資料，嶺東科技大學
 INSERT INTO docs(id,file) VALUES('1030393A','1030393A.pdf');
 
 -- 測試結果
 SELECT * FROM docs;
+SELECT COUNT(*) FROM lists;
+SELECT COUNT(*) FROM details;
