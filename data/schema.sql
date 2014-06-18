@@ -57,5 +57,3 @@ INSERT INTO docs(id,file) VALUES('1030393A','1030393A.pdf');
 
 -- 測試結果
 SELECT * FROM docs;
-SELECT COUNT(*) FROM lists;
-SELECT COUNT(*) FROM details;
