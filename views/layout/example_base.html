@@ -7,7 +7,7 @@
 
 div.bar {
     display: inline-block;
-    width: 20px;
+    width: 30px;
     height: 75px;
     background-color: red;
     margin-right: 2px;
@@ -20,55 +20,23 @@ div.bar {
 <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.4.8/d3.min.js"></script>
 <script>
 (function() {
-  var JSONDATA, data, height, width;
+    d3.json('/api/summary/dev_pass',function(JSONData){
 
-  JSONDATA = [
-    {
-      "devunit": "\u53f0\u7063\u96fb\u529b\u80a1\u4efd\u6709\u9650\u516c\u53f8",
-      "count": 91
-    }, {
-      "devunit": "\u7d93\u6fdf\u90e8\u5de5\u696d\u5c40",
-      "count": 80
-    }, {
-      "devunit": "\u53f0\u7063\u96fb\u529b\u516c\u53f8",
-      "count": 64
-    }, {
-      "devunit": "\u4e2d\u570b\u77f3\u6cb9\u80a1\u4efd\u6709\u9650\u516c\u53f8",
-      "count": 48
-    }, {
-      "devunit": "\u4ea4\u901a\u90e8\u516c\u8def\u7e3d\u5c40",
-      "count": 46
-    }, {
-      "devunit": "\u79d1\u5b78\u5de5\u696d\u5712\u5340\u7ba1\u7406\u5c40",
-      "count": 41
-    }, {
-      "devunit": "\u4ea4\u901a\u90e8\u53f0\u7063\u5340\u570b\u9053\u65b0\u5efa\u5de5\u7a0b\u5c40",
-      "count": 37
-    }, {
-      "devunit": "\u9060\u96c4\u5efa\u8a2d\u4e8b\u696d\u80a1\u4efd\u6709\u9650\u516c\u53f8",
-      "count": 36
-    }, {
-      "devunit": "\u65b0\u7af9\u5e02\u653f\u5e9c",
-      "count": 34
-    }, {
-      "devunit": "\u53f0\u7063\u4e2d\u6cb9\u80a1\u4efd\u6709\u9650\u516c\u53f8",
-      "count": 30
-    }
-  ];
+        data = JSONData.slice();
 
-  width = 300;
+        d3.select("body")
+            .selectAll("p")
+            .data(data)
+            .enter()
+            .append("div")
+            .attr("class", "bar")
+            .style("height", function(d) {
+                var barHeight;
+                barHeight = d.count * 5;
+                return barHeight + 'px';
+            });
 
-  height = 200;
-
-  data = JSONDATA.slice();
-
-  d3.select("body").selectAll("p").data(data).enter().append("div").attr("class", "bar").style("height", function(d) {
-    var barHeight;
-    console.log(d.count);
-    barHeight = d.count * 5;
-    return barHeight + 'px';
-  });
-
+    });
 }).call(this);
 
 </script>
