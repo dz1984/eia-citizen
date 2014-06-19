@@ -12,6 +12,7 @@ from bottle import route
 from bottle import request
 from bottle import response
 
+from db import cur
 
 API_VERSION = 0.1
 
@@ -30,6 +31,23 @@ def api_summary():
     responseData = _fake_summary_json(watch)
 
     return json.dumps(responseData)
+
+@route('/api/test', method='GET')
+def api_test():
+
+    return json.dumps(_summary_dev_pass())
+
+def _summary_dev_pass():
+    sql_script = """
+        SELECT devunit, count(*) count FROM details
+        WHERE devunit != ""
+        GROUP BY devunit ORDER BY count DESC
+        LIMIT 10
+    """
+    cur.execute(sql_script)
+    row = cur.fetchall()
+
+    return row
 
 def _fake_summary_json(watch):
     fake_data = {
