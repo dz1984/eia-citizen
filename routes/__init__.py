@@ -1,3 +1,3 @@
-import home,static,api
+import home,static,api,example
 
 
