@@ -25,17 +25,11 @@ def enable_cors():
 def api_status():
     return {'api_version':API_VERSION, 'server_status':'online', 'server_time': ctime()}
 
-@route('/api/summary',method='GET')
-def api_summary():
-    watch = request.query.watch
-    responseData = _fake_summary_json(watch)
+@route('/api/summary/:watch',method='GET')
+def api_summary(watch):
+    responseData = gen_summary_json(watch)
 
     return json.dumps(responseData)
-
-@route('/api/test', method='GET')
-def api_test():
-
-    return json.dumps(_summary_dev_pass())
 
 def _summary_dev_pass():
     sql_script = """
@@ -49,8 +43,8 @@ def _summary_dev_pass():
 
     return row
 
-def _fake_summary_json(watch):
-    fake_data = {
+def gen_summary_json(watch):
+    json_data = {
         'city_area': [
         {
             "city" : "台北市",
@@ -63,15 +57,11 @@ def _fake_summary_json(watch):
             "unit" :  "公頃"
         }
         ],
-        'dev_pass' :
-        {
-            "dev" : "遠雄",
-            "count" : 20
-        }
+        'dev_pass' : _summary_dev_pass()
     }
 
-    if fake_data.has_key(watch):
-        return fake_data[watch]
+    if json_data.has_key(watch):
+        return json_data[watch]
 
     return {}
 
