@@ -1,0 +1,44 @@
+{% extends "layout/base.html" %}
+
+{% block title %}Example{% endblock %}
+
+{% block head %}
+<style>
+
+div.bar {
+    display: inline-block;
+    width: 30px;
+    height: 75px;
+    background-color: red;
+    margin-right: 2px;
+}
+
+</style>
+{% endblock %}
+
+{% block scripts %}
+<script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.4.8/d3.min.js"></script>
+<script>
+(function() {
+    d3.json('/api/summary/dev_pass',function(JSONData){
+
+        data = JSONData.slice();
+
+        d3.select("body")
+            .selectAll("p")
+            .data(data)
+            .enter()
+            .append("div")
+            .attr("class", "bar")
+            .style("height", function(d) {
+                var barHeight;
+                barHeight = d.count * 5;
+                return barHeight + 'px';
+            });
+
+    });
+}).call(this);
+
+</script>
+
+{% endblock %}
