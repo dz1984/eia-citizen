@@ -1,33 +1,30 @@
-環境影響評估公民版
-----
+Bottle on OpenShift
+===================
 
-#### 相關連結 ####
+This git repository helps you get up and running quickly w/ a Bottle installation
+on the Red Hat OpenShift PaaS.
 
-* 官網：[環評書件查詢系統](http://eiareport.epa.gov.tw/EIAWEB/Main.aspx?func=00)
-* Hackpad：[環境影響評估公民版--從環評看土地變更](https://g0v.hackpad.com/--P8EaNXkcT11)
-* 資料來源：[台灣公司資料](http://company.g0v.ronny.tw/)
 
-#### 目錄結構 ####
+Running on OpenShift
+----------------------------
 
-* /libs   - 程式庫(Bottle Framework)
-* /views  - Jinja2 版型
-* /routes - Web程式
-* /data   - 流程圖、文件、資料庫
-* /admin  - 管理工具
+Create an account at https://www.openshift.com/
 
-#### 產生資料庫 ####
+Create a python application
 
-```sh
-$ data/initdb.sh
-```
+    rhc app create bottle python-2.6
 
-#### 執行方式 ####
+Add this upstream bottle repo
 
-```sh
-$ virtualenv pyenv # 先製作一份 virrualenv，確保 Python 環境衛生
-$ cd pyenv
-$ bin/pip install jinja2
-$ git clone git@github.com:g0v/eia-citizen.git
-$ cd eia-citizen
-$ ./main.py
-```
+    cd bottle
+    git remote add upstream -m master git://github.com/openshift-quickstart/bottle-openshift-quickstart.git
+    git pull -s recursive -X theirs upstream master
+    
+Then push the repo upstream
+
+    git push
+
+That's it, you can now checkout your application at:
+
+    http://bottle-$yournamespace.rhcloud.com
+
