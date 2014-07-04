@@ -1,0 +1,23 @@
+  .bar {
+    fill: red;
+  }
+
+  .axis path,
+  .axis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+  }
+
+  .tick {
+    height: 80px;
+    stroke-dasharray: 1, 2;
+  }
+  .axis text {
+    font-family: 'Arial';
+    font-size: 5px;
+  }
+  .container {
+    width: 600px;
+    margin: auto;
+  }
