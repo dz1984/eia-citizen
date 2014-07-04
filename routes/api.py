@@ -33,6 +33,11 @@ def api_summary(target, query):
     return json.dumps(responseData)
 
 def _summary_dev_send():
+    """統計開發單位送出審核案件數
+
+        以開發單位提列環評案件數，得知有哪些營利單位或政府單位，對環境異動有極大影響作用。
+    """
+
     sql_script = """
         SELECT devunit, count(*) count FROM details
         WHERE devunit != ""
@@ -42,6 +47,28 @@ def _summary_dev_send():
     cur.execute(sql_script)
     row = cur.fetchall()
 
+    return row
+
+def _summary_dev_pass():
+    """統計開發單位送出審核案件通過數
+
+        總計營利單位或政府單位通過提列環評案件。
+    """
+
+    sql_script = """
+        SELECT devunit, count(*) count FROM details
+        WHERE devunit != "" AND TRIM(examinestatus) in (
+            '審核修正通過',
+            '審核通過',
+            '有條件通過環境影響評估',
+            '通過環境影響評估審查'
+        )
+        GROUP BY devunit ORDER BY count DESC
+        LIMIT 10
+    """
+
+    cur.execute(sql_script)
+    row = cur.fetchall()
     return row
 
 def gen_summary_json(target,query):
@@ -61,7 +88,8 @@ def gen_summary_json(target,query):
             ]
         },
         'dev': {
-            'send' : _summary_dev_send()
+            'send' : _summary_dev_send(),
+            'pass' : _summary_dev_pass()
         }
     }
 

@@ -1,75 +1,49 @@
 (function() {
-  d3.json('/api/summary/dev/send', function(JSONData) {
 
-    var dataset = JSONData.slice();
+  var margin = {
+    top: 40,
+    right: 20,
+    bottom: 30,
+    left: 40
+  };
 
-    var margin = {
-      top: 40,
-      right: 20,
-      bottom: 30,
-      left: 40
-    };
+  var all_width = 960,
+      all_height = 500,
+      width = all_width - margin.left - margin.right,
+      height = all_height - margin.top - margin.bottom;
 
-    var all_width = 960,
-        all_height = 500,
-        width = all_width - margin.left - margin.right,
-        height = all_height - margin.top - margin.bottom;
 
-    var xRange = d3.scale.ordinal().rangeRoundBands([0, width], 0.1).domain(dataset.map(function(d) {
-      return d.devunit;
-    }));
+  var getXRange = function(dataset) {
+    return d3.scale.ordinal()
+        .rangeRoundBands([0, width], 0.1)
+        .domain(dataset.map(function(d) {
+                  return d.devunit;
+        }));
+  };
 
-    var yRange = d3.scale.linear().range([height, 0]).domain([
-      0, d3.max(dataset, function(d) {
-        return d.count;
-      })
-    ]);
+  var getYRange = function(dataset) {
+    return d3.scale.linear()
+          .range([height, 0])
+          .domain([0, d3.max(dataset, function(d) {
+                    return d.count;
+            })
+          ]);
+  };
 
-    var xAxis = d3.svg.axis()
-    .scale(xRange)
-    .tickSize(5)
-    .tickSubdivide(true);
-    
-    var yAxis = d3.svg.axis()
-    .scale(yRange)
-    .tickSize(5)
-    .orient("left")
-    .tickSubdivide(true);
+  var getXAxis = function(xRange) {
+    return d3.svg.axis()
+          .scale(xRange)
+          .tickSize(5)
+          .tickSubdivide(true);
+  };
 
-    var svg = d3.select("#example_dev_pass")
-    .append("svg")
-    .attr("width", all_width)
-    .attr("height", all_height)
-    .append("g")
-    .attr("transform", "translate(40,40)");
-
-    svg.append("g")
-    .attr("class", "x axis")
-    .attr("transform", "translate(0," + height + ")")
-    .call(xAxis)
-    .selectAll(".tick text")
-    .call(wrap, xRange.rangeBand());
-
-    svg.append("g")
-    .attr("class", "y axis")
-    .call(yAxis);
-
-    svg.selectAll(".bar")
-    .data(dataset)
-    .enter()
-    .append("rect")
-    .attr("class", "bar")
-    .attr("x", function(d) {
-      return xRange(d.devunit);
-    })
-    .attr("y", function(d) {
-      return yRange(d.count);
-    })
-    .attr("width", xRange.rangeBand())
-    .attr("height", function(d) {
-      return height - yRange(d.count);
-    });
-  });
+  var getYAxis = function(yRange) {
+    return  d3.svg.axis()
+            .scale(yRange)
+            .tickSize(5)
+            .orient("left")
+            .tickSubdivide(true);
+  };
 
   var wrap = function(text, width) {
     text.each(function() {
@@ -95,4 +69,59 @@
       }
     });
   };
+
+  var generateBarChart = function(JSONData,elementId) {
+    var dataset = JSONData.slice();
+
+    var xRange = getXRange(dataset);
+
+    var yRange = getYRange(dataset);
+
+    var xAxis = getXAxis(xRange);
+    
+    var yAxis = getYAxis(yRange);
+
+    var svg = d3.select(elementId)
+              .append("svg")
+              .attr("width", all_width)
+              .attr("height", all_height)
+              .append("g")
+              .attr("transform", "translate(40,40)");
+
+     svg.append("g")
+      .attr("class", "x axis")
+      .attr("transform", "translate(0," + height + ")")
+      .call(xAxis)
+      .selectAll(".tick text")
+      .call(wrap, xRange.rangeBand());
+
+      svg.append("g")
+      .attr("class", "y axis")
+      .call(yAxis);
+
+      svg.selectAll(".bar")
+      .data(dataset)
+      .enter()
+      .append("rect")
+      .attr("class", "bar")
+      .attr("x", function(d) {
+        return xRange(d.devunit);
+      })
+      .attr("y", function(d) {
+        return yRange(d.count);
+      })
+      .attr("width", xRange.rangeBand())
+      .attr("height", function(d) {
+        return height - yRange(d.count);
+      });
+  };
+
+  d3.json('/api/summary/dev/send', function(JSONData) {
+    generateBarChart(JSONData,"#example_dev_send");
+  });
+
+  d3.json('/api/summary/dev/pass', function(JSONData) {
+    generateBarChart(JSONData,"#example_dev_pass");
+  });
+
 }).call(this);
